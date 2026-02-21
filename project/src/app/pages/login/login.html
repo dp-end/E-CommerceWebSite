@@ -1,11 +1,15 @@
-<div class="login-container">
+<div class="login-page-container">
+  <div *ngIf="isFormVisible" class="login-card">
+    <h2>Giriş Bilgileri</h2>
+    <form (ngSubmit)="onLogin()" #loginForm="ngForm">
+      <input type="text" name="username" [(ngModel)]="credentials.username" placeholder="Kullanıcı Adı" required>
+      <input type="password" name="password" [(ngModel)]="credentials.password" placeholder="Şifre" required>
+      <button type="submit" [disabled]="!loginForm.valid">Giriş Yap</button>
+    </form>
+  </div>
 
-  <form (ngSubmit))="onLogin()" #loginForm = "ngForm">
-    <h2>E-Commerce Analytics Login</h2>
-    <input type="text" name="username" [(ngModel)] = "credentials.username" placeholder="Kullanıcı Adı" required>
-    <input type="password" name ="password" [(ngModel)] = "credentials.password" placeholder = "Şifre" required>
-
-    <button type="submit" [disabled]="!loginForm.valid">Giriş Yap</button>
-  </form>
-
+  <div *ngIf="!isFormVisible" class="welcome-text">
+    <h1>Platforma Hoş Geldiniz</h1>
+    <p>Analizleri görmek için lütfen yukarıdaki butonu kullanarak giriş yapın.</p>
+  </div>
 </div>

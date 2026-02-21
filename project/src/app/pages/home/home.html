@@ -1,0 +1,15 @@
+<div class="home-container">
+  <header class="hero">
+    <h1>E-Commerce Analytics Platform</h1>
+    <p>Verilerinizi analiz etmek ve mağazanızı yönetmek için giriş yapın.</p>
+  </header>
+
+  <section class="product-grid">
+    <div class="product-card" *ngFor="let product of sampleProducts">
+      <div class="product-image-placeholder">🛒</div>
+      <h3>{{ product.name }}</h3>
+      <p class="price">{{ product.price | currency }}</p>
+      <button class="view-details" routerLink="/login">Detaylar için Giriş Yap</button>
+    </div>
+  </section>
+</div>

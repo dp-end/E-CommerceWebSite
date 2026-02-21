@@ -1,33 +1,31 @@
-import { CommonModule } from '@angular/common';
 import { Component } from '@angular/core';
-import { FormsModule } from '@angular/forms';
 import { Router } from '@angular/router';
-
+import { FormsModule } from '@angular/forms';
+import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'app-login',
-  imports: [FormsModule,CommonModule],
+  standalone: true,
+  imports: [FormsModule, CommonModule],
   templateUrl: './login.html',
-  styleUrl: './login.css',
+  styleUrl: './login.css'
 })
 export class Login {
-  credentials = {username : '' , password: ''};
+  // Sayfa yüklendiğinde form direkt görünsün
+  isFormVisible: boolean = true;
+
+  credentials = { username: '', password: '' };
 
   constructor(private router: Router) {}
-  onLogin(){
-    const role = this.getMockRole(this.credentials.username)
-    if(role == 'ADMIN'){
-      this.router.navigate(['/admin']);
-    }else if(role == 'CORPORATE') {
-      this.router.navigate(['/corporate']);
-    }else{
-      this.router.navigate(['individual']);
-    }
-  }
 
-  getMockRole(user: string){
-    if(user.includes('admin')) return 'ADMIN';
-    if(user.includes('shop')) return 'CORPORATE';
-    return 'INDIVIDUAL';
+  onLogin() {
+    const user = this.credentials.username.toLowerCase();
+    if (user === 'admin') {
+      this.router.navigate(['/admin']);
+    } else if (user === 'corporate') {
+      this.router.navigate(['/corporate']);
+    } else {
+      this.router.navigate(['/individual']);
+    }
   }
 }
